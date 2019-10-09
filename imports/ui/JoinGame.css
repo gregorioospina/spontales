@@ -1,0 +1,37 @@
+body {
+  background-image: url("/knightforbg.png");
+  background-size: 100px 100px;
+  font-family: "Raleway";
+}
+
+#joingame-container {
+  margin-top: 15%;
+  width: 40%;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Righteous";
+}
+
+#title {
+  font-size: 65px;
+}
+
+#gamecode-input-container {
+  height: 60px;
+}
+
+#gamecode-input {
+  text-align: center;
+  height: 100%;
+  font-size: 25px;
+}
+
+#joingame-button {
+  background: #ab05f2;
+  border: #ab05f2;
+  font-size: 25px;
+  height: 60px;
+  width: 100%;
+}

@@ -1,8 +1,9 @@
 import React from "react";
+import JoinGame from "./JoinGame";
 
 const App = () => (
-  <div>
-    <h1>Welcome to SponTales</h1>
+  <div id="content-container">
+    <JoinGame />
   </div>
 );
 
