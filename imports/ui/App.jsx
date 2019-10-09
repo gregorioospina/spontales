@@ -1,10 +1,17 @@
 import React from "react";
 import JoinGame from "./JoinGame";
+import Menu from "./Menu";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => (
-  <div id="content-container">
-    <JoinGame />
-  </div>
+  <Router>
+    <div id="content-container">
+      <Switch>
+        <Route path="/" exact component={JoinGame} />
+        <Route path="/game" component={Menu} />
+      </Switch>
+    </div>
+  </Router>
 );
 
 export default App;
