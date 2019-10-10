@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
 import Navbar from "./Navbar";
 import "./Menu.css";
 
@@ -96,4 +97,6 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default withTracker(() => {
+  return {};
+})(Menu);
