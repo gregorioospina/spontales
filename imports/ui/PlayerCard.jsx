@@ -14,7 +14,7 @@ const PlayerCard = player => {
             className="card-img-top shield-img"
             alt="..."
           />
-          <div className="card-body">
+          <div className="card-body card-body-chechonomemate">
             <p className="card-text">{playerName}</p>
           </div>
         </div>
