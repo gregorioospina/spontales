@@ -1,30 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Game.css";
 
-class PlayerCard extends React.Component {
-  constructor(props) {
-    super(props);
+const PlayerCard = player => {
+  let [playerName, setPlayerName] = useState(player.player.name);
+  let [id, setId] = useState(player.player.id);
 
-    this.state = {
-      playerName: this.props.player.name,
-      id: this.props.player.id
-    };
-  }
-
-  render() {
-    return (
-      <div className="card playercard" id={`player${this.state.id}`}>
-        <img
-          src={`../../public/shield${this.state.id}.svg`}
-          className="card-img-top"
-          alt="..."
-        />
+  return (
+    <div className="card playercard" id={`player${id}`}>
+      <div id="opacity-card">
+        <img src={`/shield${id}.png`} className="card-img-top" alt="..." />
         <div className="card-body">
-          <p className="card-text">{this.state.playerName}</p>
+          <p className="card-text">{playerName}</p>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default PlayerCard;
