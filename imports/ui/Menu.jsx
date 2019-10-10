@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
 import Navbar from "./Navbar";
 import "./Menu.css";
 
 const Menu = () => {
   return (
     <div>
-      <header>
+      <div>
         <Navbar />
-      </header>
+      </div>
 
-      <main className="container-fluid" id="menu-container">
-        <h2></h2>
+      <div className="container-fluid" id="menu-container">
+        <h1>Welcome</h1>
         <div className="row">
           <div className="col-sm-4">
             <div className="card">
@@ -38,24 +39,30 @@ const Menu = () => {
               <div className="card-body">
                 <h2 className="card-title">Past games</h2>
                 <ul className="list-group">
-                  <a
-                    href="/"
-                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                  >
-                    Laundry
-                  </a>
-                  <a
-                    href="/"
-                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                  >
-                    Food
-                  </a>
-                  <a
-                    href="/"
-                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                  >
-                    Things to fix
-                  </a>
+                  <li>
+                    <a
+                      href="/"
+                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                    >
+                      Laundry
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/"
+                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                    >
+                      Laundry
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/"
+                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                    >
+                      Laundry
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -85,9 +92,11 @@ const Menu = () => {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
 
-export default Menu;
+export default withTracker(() => {
+  return {};
+})(Menu);
