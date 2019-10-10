@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AccountsUIWrapper from "../../AccountsUIWrapper";
+import AccountsUIWrapper from "./AccountsUIWrapper";
 import "./Menu.css";
 
 const Menu = () => {
