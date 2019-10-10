@@ -8,9 +8,15 @@ const PlayerCard = player => {
   return (
     <div className="card playercard" id={`player${id}`}>
       <div id="opacity-card">
-        <img src={`/shield${id}.png`} className="card-img-top" alt="..." />
-        <div className="card-body">
-          <p className="card-text">{playerName}</p>
+        <div class="row">
+          <img
+            src={`/shield${id}.png`}
+            className="card-img-top shield-img"
+            alt="..."
+          />
+          <div className="card-body">
+            <p className="card-text">{playerName}</p>
+          </div>
         </div>
       </div>
     </div>

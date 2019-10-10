@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PlayerCard from "./PlayerCard";
 import NavBar from "./Navbar";
+import Loading from "./Loading";
 import "./Game.css";
+import "./Animations.css";
 
 const Game = () => {
   let n = {
@@ -58,6 +60,7 @@ const Game = () => {
   let [players, setPlayers] = useState(p);
   let [fill, setFills] = useState(f);
   let [p_turn, setPTurn] = useState(1);
+  let [loading, setLoading] = useState(true);
 
   printLibText = () => {
     return fill.map(fil => {
@@ -85,38 +88,62 @@ const Game = () => {
 
   showRivals = () => {
     return players.map(player => {
-      return (
-        <div className="col-3">
-          <PlayerCard player={player} />
-        </div>
-      );
+      return <PlayerCard player={player} />;
     });
   };
 
-  return (
-    <>
-      <header>
-        <NavBar />
-      </header>
+  returnGame = () => {
+    return (
+      <>
+        <header>
+          <NavBar />
+        </header>
 
-      <div className="container">
-        <div className="row">
-          <div className="col-3">
-            <GameNavMenu player={n_player} />
-          </div>
-          <div className="col-9">
-            <div id="text-container">
-              <div id="lib-text">{this.printLibText()}</div>
-              <label htmlFor="rivals-box"> Playing Against: </label>
-              <div id="rivals-box" className="row">
-                {this.showRivals()}
+        <div className="container">
+          <div className="row">
+            <div className="col-3" id="rivals-column">
+              <label htmlFor="rivals-box"> Players: </label>
+              {this.showRivals()}
+            </div>
+            <div className="col-9">
+              <div id="text-container">
+                <div id="lib-text">{this.printLibText()}</div>
+              </div>
+              <div id="button-submit">
+                <button type="button" className="btn btn-warning">
+                  Submit
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  };
+
+  returnLoading = () => {
+    let clickLoading = evt => {
+      setLoading(false);
+    };
+    return (
+      <>
+        <Loading />
+        <button type="button" onClick={clickLoading}>
+          Button
+        </button>
+      </>
+    );
+  };
+
+  whichReturn = () => {
+    if (loading === true) {
+      return returnLoading();
+    } else {
+      return returnGame();
+    }
+  };
+
+  return whichReturn();
 };
 
 const LibInput = (classType, placeholder) => {
@@ -132,8 +159,6 @@ const LibInput = (classType, placeholder) => {
 
 const GameNavMenu = player => {
   let shield = "shield" + player.player.id;
-  let nm = 30;
-
   return (
     <div className="row">
       <img src={`/${shield}.png`} alt="shield" className="shield-img" />

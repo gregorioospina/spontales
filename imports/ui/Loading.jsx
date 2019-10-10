@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import "./Loading.css";
 
 const Loading = () => {
   return (
-    <div className="container">
+    <div className="container" id="joingame-container">
       <div>
         <h2> Waiting for all the brave warriors to join battle </h2>
       </div>

@@ -22,19 +22,31 @@
   margin-top: 20%;
 }
 
-.container {
-  margin-left: 10%;
-  margin-right: 10%;
+#lib-text {
+  font-size: 17pt;
+}
+
+.container-deluxe {
+  margin-left: 5%;
+  margin-right: 25%;
   font-size: 20pt;
 }
 #playername {
   line-height: 70px;
 }
 
+#rivals-column {
+  margin-top: 5%;
+}
+
 .playercard {
   width: 80%;
-  height: 70%;
+  height: 20%;
   color: black;
+  font-size: 15pt;
+  background-color: rgba(156, 149, 145, 0.1);
+  margin: 10px;
+  max-height: 70px;
 }
 
 .cardtext {
@@ -42,25 +54,19 @@
   opacity: 1;
 }
 
-.playercard#player1 {
-  background-color: rgba(215, 85, 217, 0.3);
+.card-body {
+  padding-left: 0;
 }
 
-.playercard#player2 {
-  background-color: rgba(171, 5, 242, 0.3);
-}
-
-.playercard#player3 {
-  background-color: rgba(242, 203, 5, 0.3);
-}
-
-.playercard#player4 {
-  background-color: rgba(242, 160, 87, 0.3);
+#button-submit {
+  margin-top: 20%;
+  margin-left: 35%;
 }
 
 .shield-img {
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
+  margin-left: 20px;
 }
 
 .player-input-1 {
