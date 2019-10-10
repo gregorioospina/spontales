@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PlayerCard from "./PlayerCard";
+import NavBar from "./Navbar";
 import "./Game.css";
 
 const Game = () => {
@@ -95,22 +96,7 @@ const Game = () => {
   return (
     <>
       <header>
-        <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="#">
-            <img
-              src="/knight.png"
-              className="d-inline-block"
-              alt="logo"
-              id="logo"
-            />
-            SponTales
-          </a>
-          <form className="form-inline">
-            <button className="btn btn-outline-primary" id="logout-button">
-              Log Out
-            </button>
-          </form>
-        </nav>
+        <NavBar />
       </header>
 
       <div className="container">
