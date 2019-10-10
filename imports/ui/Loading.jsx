@@ -3,7 +3,7 @@ import "./Loading.css";
 
 const Loading = () => {
   return (
-    <div className="container" id="joingame-container">
+    <div className="container" id="loading-container">
       <div>
         <h2> Waiting for all the brave warriors to join battle </h2>
       </div>
