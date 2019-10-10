@@ -45,6 +45,37 @@ h1 {
   margin-top: 160px;
 }
 
+#login-sign-in-link {
+  color: #ab05f2;
+}
+
+#login-sign-in-link:hover {
+  color: #f2e205;
+}
+
+#login-username-label,
+#login-password-label,
+#login-username,
+#login-password,
+#signup-link,
+#login-buttons-password,
+#login-password-again-label,
+#login-password-again,
+#login-buttons-password,
+#back-to-login-link {
+  font-family: "Raleway";
+}
+
+button.login-button.login-button-form-submit#login-buttons-password {
+  background: #ab05f2;
+  font-family: "Raleway";
+  border-color: #ab05f2;
+}
+
+button.login-button.login-button-form-submit#login-buttons-password:hover {
+  color: #f2e205;
+}
+
 /*CSS for mobile*/
 @media (max-width: 767.98px) {
   #joingame-container {

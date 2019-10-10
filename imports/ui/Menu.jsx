@@ -24,6 +24,7 @@ const Menu = () => {
       </header>
 
       <main className="container-fluid" id="menu-container">
+        <h2></h2>
         <div className="row">
           <div className="col-sm-4">
             <div className="card">
