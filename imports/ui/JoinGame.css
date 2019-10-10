@@ -40,3 +40,16 @@ h1 {
 #joingame-button:hover {
   color: #f2e205;
 }
+
+/*CSS for mobile*/
+@media (max-width: 767.98px) {
+  #joingame-container {
+    margin-top: 60%;
+    width: 100%;
+    text-align: center;
+  }
+
+  #title {
+    font-size: 60px;
+  }
+}

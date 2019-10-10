@@ -66,3 +66,31 @@ body {
 #joingamemenu-button:hover {
   color: #f2e205;
 }
+
+@media (max-width: 767.98px) {
+  .navbar-brand {
+    font-size: 30px;
+  }
+
+  #logo {
+    width: 40px;
+    height: 40px;
+    margin-top: -2px;
+    margin-right: 15px;
+  }
+
+  #logout-button {
+    color: #ab05f2;
+    border-color: #ab05f2;
+    height: 40px;
+    width: 90px;
+    font-size: 14px;
+  }
+
+  .card {
+    text-align: center;
+    background: #f2e205;
+    border-color: #ab05f2;
+    margin-bottom: 15px;
+  }
+}

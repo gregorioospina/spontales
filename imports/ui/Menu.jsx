@@ -7,7 +7,7 @@ const Menu = () => {
     <div>
       <header>
         <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/menu">
             <img
               src="/knight.png"
               className="d-inline-block"
