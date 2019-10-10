@@ -49,6 +49,10 @@ body {
   background: #ab05f2;
 }
 
+ul {
+  list-style-type: none;
+}
+
 @media (max-width: 767.98px) {
   .navbar-brand {
     font-size: 25px;
