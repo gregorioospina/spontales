@@ -45,6 +45,10 @@ h1 {
   margin-top: 160px;
 }
 
+#login-text {
+  font-size: 22px;
+}
+
 #login-sign-in-link {
   color: #ab05f2;
 }

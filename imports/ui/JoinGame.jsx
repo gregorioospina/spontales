@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
@@ -7,26 +7,22 @@ import Menu from "./Menu";
 import AccountsUIWrapper from "./AccountsUIWrapper";
 import "./JoinGame.css";
 
-const JoinGame = props => {
+const JoinGame = () => {
   const [gamecode, setGamecode] = useState("");
-  const [user, setUser] = useState(null);
 
   const handleChangeName = evt => {
     setGamecode(evt.target.value);
   };
 
-  useEffect(() => {
-    console.log("useEffect");
-  });
-
   return (
-    <div>
+    <div role="main">
       {Meteor.user() === null ? (
         <div className="container-fluid" id="joingame-container">
           <h1 id="title">SponTales</h1>
           <form>
             <div className="form-group row">
               <div className="col" id="gamecode-input-container">
+                <label htmlFor="gamecode-input"></label>
                 <input
                   type="text"
                   className="form-control"
@@ -44,12 +40,12 @@ const JoinGame = props => {
             </div>
           </form>
           <div id="login-container">
-            <h5>
+            <h2 id="login-text">
               Want to create your own SponTales?{" "}
               <a>
                 <AccountsUIWrapper />
               </a>
-            </h5>
+            </h2>
           </div>
         </div>
       ) : (

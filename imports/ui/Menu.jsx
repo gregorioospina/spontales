@@ -1,26 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AccountsUIWrapper from "./AccountsUIWrapper";
+import Navbar from "./Navbar";
 import "./Menu.css";
 
 const Menu = () => {
   return (
     <div>
       <header>
-        <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="/menu">
-            <img
-              src="/knight.png"
-              className="d-inline-block"
-              alt="logo"
-              id="logo"
-            />
-            SponTales
-          </a>
-          <form className="form-inline">
-            <AccountsUIWrapper />
-          </form>
-        </nav>
+        <Navbar />
       </header>
 
       <main className="container-fluid" id="menu-container">
@@ -51,11 +38,24 @@ const Menu = () => {
               <div className="card-body">
                 <h2 className="card-title">Past games</h2>
                 <ul className="list-group">
-                  <li className="list-group-item">Juego 1</li>
-                  <li className="list-group-item">Juego 2</li>
-                  <li className="list-group-item">Juego 3</li>
-                  <li className="list-group-item">Juego 4</li>
-                  <li className="list-group-item">Juego 5</li>
+                  <a
+                    href="/"
+                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                  >
+                    Laundry
+                  </a>
+                  <a
+                    href="/"
+                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                  >
+                    Food
+                  </a>
+                  <a
+                    href="/"
+                    className="list-group-item d-flex justify-content-between align-items-center pastgame"
+                  >
+                    Things to fix
+                  </a>
                 </ul>
               </div>
             </div>

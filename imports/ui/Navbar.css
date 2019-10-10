@@ -1,0 +1,70 @@
+.navbar {
+  font-family: "Righteous";
+}
+
+.navbar-brand {
+  font-size: 45px;
+}
+
+#logo {
+  width: 50px;
+  height: 50px;
+  margin-top: -2px;
+  margin-right: 15px;
+}
+
+#login-name-link {
+  color: #ab05f2;
+  font-family: "Raleway";
+  font-size: 25px;
+}
+
+#login-buttons #login-name-link {
+  text-decoration: none;
+}
+
+#login-buttons {
+  margin-right: 15px;
+}
+
+#login-old-password-label,
+#login-old-password {
+  font-family: "Raleway";
+}
+
+#login-dropdown-list {
+  margin-top: 40px;
+  margin-left: 5px;
+}
+
+div.login-button#login-buttons-open-change-password {
+  background: #ab05f2;
+  font-family: "Raleway";
+  border-color: #ab05f2;
+}
+
+div.login-button#login-buttons-open-change-password:hover {
+  background: #ab05f2;
+  color: #f2e205;
+}
+
+div.login-button#login-buttons-logout {
+  background: #ab05f2;
+  font-family: "Raleway";
+  border-color: #ab05f2;
+}
+
+div.login-button#login-buttons-logout:hover {
+  background: #ab05f2;
+  color: #f2e205;
+}
+
+div.login-button.login-button-form-submit#login-buttons-do-change-password {
+  background: #ab05f2;
+  font-family: "Raleway";
+  border-color: #ab05f2;
+}
+
+div.login-button.login-button-form-submit#login-buttons-do-change-password:hover {
+  color: #f2e205;
+}
