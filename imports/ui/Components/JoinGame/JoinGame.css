@@ -41,6 +41,10 @@ h1 {
   color: #f2e205;
 }
 
+#login-container {
+  margin-top: 160px;
+}
+
 /*CSS for mobile*/
 @media (max-width: 767.98px) {
   #joingame-container {

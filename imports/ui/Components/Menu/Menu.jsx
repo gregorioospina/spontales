@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AccountsUIWrapper from "../../AccountsUIWrapper";
 import "./Menu.css";
 
 const Menu = () => {
@@ -17,9 +18,7 @@ const Menu = () => {
             SponTales
           </a>
           <form className="form-inline">
-            <button className="btn btn-outline-primary" id="logout-button">
-              Log Out
-            </button>
+            <AccountsUIWrapper />
           </form>
         </nav>
       </header>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AccountsUIWrapper from "../../AccountsUIWrapper";
 import "./JoinGame.css";
 
 const JoinGame = () => {
@@ -31,6 +32,11 @@ const JoinGame = () => {
           </div>
         </div>
       </form>
+      <div id="login-container">
+        <h5>
+          Want to create your own SponTales? <AccountsUIWrapper />
+        </h5>
+      </div>
     </div>
   );
 };
