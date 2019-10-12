@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PlayerCard from "./PlayerCard";
 import NavBar from "./Navbar";
 import Loading from "./Loading";
+import LibInput from "./LibInput";
 import "./Game.css";
 import "./Animations.css";
 
@@ -31,27 +32,33 @@ const Game = () => {
   ];
   let f = [
     {
-      id: 2,
+      id: 1,
       blank: "Adjective",
       text: "Hello little boy",
       order: 1
     },
     {
-      id: 3,
+      id: 2,
       blank: "Noun",
       text: "Chummy chum chum",
       order: 1
     },
     {
-      id: 4,
+      id: 3,
       blank: "Place",
       text: "Wanna go?",
       order: 1
     },
     {
-      id: 1,
-      blank: "Adjective",
-      text: "Thats nice",
+      id: 4,
+      blank: "Noun",
+      text: "Chummy chum chum",
+      order: 1
+    },
+    {
+      id: 5,
+      blank: "Place",
+      text: "Wanna go?",
       order: 1
     }
   ];
@@ -60,7 +67,17 @@ const Game = () => {
   let [players, setPlayers] = useState(p);
   let [fill, setFills] = useState(f);
   let [p_turn, setPTurn] = useState(1);
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
+  let [loadingText, setLoadingText] = useState(
+    "Waiting for the brave warriors who'll join you in battle"
+  );
+
+  handleInputChange = (text, id) => {
+    let copy = fill;
+    copy[id].blank = text;
+
+    setFills(copy);
+  };
 
   printLibText = () => {
     return fill.map(fil => {
@@ -69,15 +86,22 @@ const Game = () => {
         return (
           <>
             <a> {fil.text} </a>
-            <LibInput classType={ct} placeholder={fil.blank} />
+            <LibInput
+              classType={ct}
+              placeholder={fil.blank}
+              id={fil.id}
+              inputChange={this.handleInputChange}
+            />
           </>
         );
       } else {
         return (
           <>
             <LibInput
-              classType={`player-input-${fil.id}`}
+              classType={ct}
               placeholder={fil.blank}
+              id={fil.id}
+              inputChange={this.handleInputChange}
             />
             <a> {fil.text} </a>
           </>
@@ -90,6 +114,20 @@ const Game = () => {
     return players.map(player => {
       return <PlayerCard player={player} />;
     });
+  };
+
+  combineInput = () => {
+    let x = "";
+    fill.map(fil => {
+      if (fil.order === 0) {
+        x = x + " " + fil.text + " " + fil.blank;
+      } else {
+        x = x + " " + fil.blank + " " + fil.text;
+      }
+    });
+    console.log(x);
+    setLoadingText("Waiting for everyones' input");
+    setLoading(true);
   };
 
   returnGame = () => {
@@ -110,7 +148,11 @@ const Game = () => {
                 <div id="lib-text">{this.printLibText()}</div>
               </div>
               <div id="button-submit">
-                <button type="button" className="btn btn-warning">
+                <button
+                  type="button"
+                  className="btn btn-warning"
+                  onClick={this.combineInput}
+                >
                   Submit
                 </button>
               </div>
@@ -127,7 +169,7 @@ const Game = () => {
     };
     return (
       <>
-        <Loading />
+        <Loading textisimo={loadingText} />
         <button type="button" onClick={clickLoading}>
           Button
         </button>
@@ -144,17 +186,6 @@ const Game = () => {
   };
 
   return whichReturn();
-};
-
-const LibInput = (classType, placeholder) => {
-  console.log(classType);
-  return (
-    <input
-      type="text"
-      className={classType.classType}
-      placeholder={placeholder.placeholder}
-    />
-  );
 };
 
 const GameNavMenu = player => {
