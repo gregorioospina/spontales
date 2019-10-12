@@ -5,7 +5,6 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import "./Animations.css";
 
 const Game = () => {
   let n = {
@@ -71,6 +70,10 @@ const Game = () => {
   let [loadingText, setLoadingText] = useState(
     "Waiting for the brave warriors who'll join you in battle"
   );
+  let [submits, setSubmit] = useState(0);
+  let [result, setResult] = useState(
+    "Hola como va todo, maertin esta en villa de leyva buscando bonsais eso esta suer entretendio estoy muy feliz bla bla bla bla bla bla bla"
+  );
 
   handleInputChange = (text, id) => {
     let copy = fill;
@@ -81,7 +84,8 @@ const Game = () => {
 
   printLibText = () => {
     return fill.map(fil => {
-      let ct = `player-input-${fil.id}`;
+      let _id = fil.id;
+      let ct = `player-input-${_id}`;
       if (fil.order === 0) {
         return (
           <>
@@ -89,7 +93,7 @@ const Game = () => {
             <LibInput
               classType={ct}
               placeholder={fil.blank}
-              id={fil.id}
+              id={_id}
               inputChange={this.handleInputChange}
             />
           </>
@@ -100,7 +104,7 @@ const Game = () => {
             <LibInput
               classType={ct}
               placeholder={fil.blank}
-              id={fil.id}
+              id={_id}
               inputChange={this.handleInputChange}
             />
             <a> {fil.text} </a>
@@ -118,6 +122,8 @@ const Game = () => {
 
   combineInput = () => {
     let x = "";
+    console.log("fill en combine Input");
+    console.log(fill);
     fill.map(fil => {
       if (fil.order === 0) {
         x = x + " " + fil.text + " " + fil.blank;
@@ -125,9 +131,41 @@ const Game = () => {
         x = x + " " + fil.blank + " " + fil.text;
       }
     });
+    console.log("x");
     console.log(x);
-    setLoadingText("Waiting for everyones' input");
+    setResult(x);
+    setLoadingText("Waiting for everyones' input ");
     setLoading(true);
+    setSubmit(submits + 1);
+  };
+
+  returnResult = () => {
+    return (
+      <>
+        <header>
+          <NavBar />
+        </header>
+
+        <div className="container" id="results-container">
+          <div className="result-banner">
+            <h1 id="result-h1"> Result! </h1>
+          </div>
+          <div className="">
+            <div id="text-container-results">
+              <div id="result-text">{result}</div>
+              <div id="lil-margin">
+                <Link to={"/game"}>
+                  <button className="btn btn-dark btn-gob">
+                    {" "}
+                    &#x2190; GO BACK
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
   };
 
   returnGame = () => {
@@ -181,27 +219,11 @@ const Game = () => {
     if (loading === true) {
       return returnLoading();
     } else {
-      return returnGame();
+      return submits >= 1 ? returnResult() : returnGame();
     }
   };
 
   return whichReturn();
-};
-
-const GameNavMenu = player => {
-  let shield = "shield" + player.player.id;
-  return (
-    <div className="row">
-      <img src={`/${shield}.png`} alt="shield" className="shield-img" />
-      <h4 id="playername">{player.player.name}</h4>
-      <div className="sk-folding-cube">
-        <div className="sk-cube1 sk-cube"></div>
-        <div className="sk-cube2 sk-cube"></div>
-        <div className="sk-cube4 sk-cube"></div>
-        <div className="sk-cube3 sk-cube"></div>
-      </div>
-    </div>
-  );
 };
 
 export default Game;

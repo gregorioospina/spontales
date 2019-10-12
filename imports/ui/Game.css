@@ -22,8 +22,38 @@
   margin-top: 20%;
 }
 
+#lil-margin {
+  margin-top: 5%;
+  margin-left: 35%;
+}
+
+.btn-gob {
+  background: var(--color2);
+  border-style: none;
+}
+
+#result-h1 {
+  color: var(--color2);
+}
+
+#text-container-results {
+  margin: 20%;
+  margin-top: 7%;
+  margin-bottom: 0;
+}
+
+#result-text {
+  font-size: 25pt;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 #lib-text {
   font-size: 17pt;
+}
+
+.result-banner {
+  margin-left: 40%;
 }
 
 .container-deluxe {
@@ -67,6 +97,22 @@
   height: 70px;
   width: 70px;
   margin-left: 20px;
+}
+
+.player-answer-1 {
+  color: var(--color1);
+}
+
+.player-answer-2 {
+  color: var(--color2);
+}
+
+.player-answer-3 {
+  color: var(--color3);
+}
+
+.player-answer-4 {
+  color: var(--color4);
 }
 
 .player-input-1 {
