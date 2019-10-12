@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+
 import { Link } from "react-router-dom";
 import PlayerCard from "./PlayerCard";
 import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
+import { GamesRepo } from "../api/game";
 
 const Game = () => {
-  let n = {
-    name: "Juanito",
-    id: 1
-  };
   let p = [
     {
       name: "Juanito",
@@ -61,12 +62,12 @@ const Game = () => {
       order: 1
     }
   ];
+  let [game_id, setGameId] = useState("nill");
 
-  let [n_player, setN] = useState(n);
   let [players, setPlayers] = useState(p);
   let [fill, setFills] = useState(f);
-  let [p_turn, setPTurn] = useState(1);
   let [loading, setLoading] = useState(false);
+  let [err, setErr] = useState({});
   let [loadingText, setLoadingText] = useState(
     "Waiting for the brave warriors who'll join you in battle"
   );
@@ -75,14 +76,14 @@ const Game = () => {
     "Hola como va todo, maertin esta en villa de leyva buscando bonsais eso esta suer entretendio estoy muy feliz bla bla bla bla bla bla bla"
   );
 
-  handleInputChange = (text, id) => {
+  const handleInputChange = (text, id) => {
     let copy = fill;
     copy[id].blank = text;
 
     setFills(copy);
   };
 
-  printLibText = () => {
+  const printLibText = () => {
     return fill.map(fil => {
       let _id = fil.id;
       let ct = `player-input-${_id}`;
@@ -94,7 +95,7 @@ const Game = () => {
               classType={ct}
               placeholder={fil.blank}
               id={_id}
-              inputChange={this.handleInputChange}
+              inputChange={handleInputChange}
             />
           </>
         );
@@ -105,7 +106,7 @@ const Game = () => {
               classType={ct}
               placeholder={fil.blank}
               id={_id}
-              inputChange={this.handleInputChange}
+              inputChange={handleInputChange}
             />
             <a> {fil.text} </a>
           </>
@@ -114,13 +115,13 @@ const Game = () => {
     });
   };
 
-  showRivals = () => {
+  const showRivals = () => {
     return players.map(player => {
       return <PlayerCard player={player} />;
     });
   };
 
-  combineInput = () => {
+  const combineInput = () => {
     let x = "";
     console.log("fill en combine Input");
     console.log(fill);
@@ -139,7 +140,14 @@ const Game = () => {
     setSubmit(submits + 1);
   };
 
-  returnResult = () => {
+  const returnResult = () => {
+    Meteor.call("pastgames.insert", (game_id, result, players), err => {
+      if (err) {
+        setErr(err);
+        return;
+      }
+      console.log("agregado el juego", game_id);
+    });
     return (
       <>
         <header>
@@ -168,7 +176,7 @@ const Game = () => {
     );
   };
 
-  returnGame = () => {
+  const returnGame = () => {
     return (
       <>
         <header>
@@ -179,17 +187,17 @@ const Game = () => {
           <div className="row">
             <div className="col-3" id="rivals-column">
               <label htmlFor="rivals-box"> Players: </label>
-              {this.showRivals()}
+              {showRivals()}
             </div>
             <div className="col-9">
               <div id="text-container">
-                <div id="lib-text">{this.printLibText()}</div>
+                <div id="lib-text">{printLibText()}</div>
               </div>
               <div id="button-submit">
                 <button
                   type="button"
                   className="btn btn-warning"
-                  onClick={this.combineInput}
+                  onClick={combineInput}
                 >
                   Submit
                 </button>
@@ -201,8 +209,8 @@ const Game = () => {
     );
   };
 
-  returnLoading = () => {
-    let clickLoading = evt => {
+  const returnLoading = () => {
+    let clickLoading = () => {
       setLoading(false);
     };
     return (
@@ -215,7 +223,7 @@ const Game = () => {
     );
   };
 
-  whichReturn = () => {
+  const whichReturn = () => {
     if (loading === true) {
       return returnLoading();
     } else {
@@ -226,4 +234,63 @@ const Game = () => {
   return whichReturn();
 };
 
-export default Game;
+let LoadGame = withTracker(() => {
+  Meteor.subscribe("games_repo");
+  const game = GamesRepo.find({}).fetch();
+  console.log(game);
+  let randomIndex = Math.floor(Math.random() * game.length);
+  let element = game[randomIndex];
+  /*let fll = element.fill; */
+
+  let fill = [
+    {
+      id: 1,
+      blank: "Adjective",
+      text: "Hello little boy",
+      order: 1
+    },
+    {
+      id: 2,
+      blank: "Noun",
+      text: "Chummy chum chum",
+      order: 1
+    },
+    {
+      id: 3,
+      blank: "Place",
+      text: "Wanna go?",
+      order: 1
+    },
+    {
+      id: 4,
+      blank: "Noun",
+      text: "Chummy chum chum",
+      order: 1
+    },
+    {
+      id: 5,
+      blank: "Place",
+      text: "Wanna go?",
+      order: 1
+    }
+  ];
+  return fill;
+})(Game);
+
+Game.defaultProps = {
+  game_id: "GM000",
+  players: [
+    {
+      name: "Waiting",
+      id: 1
+    }
+  ]
+};
+
+Game.PropTypes = {
+  players: PropTypes.array,
+  fill: PropTypes.array,
+  game_id: PropTypes.string
+};
+
+export default LoadGame;
