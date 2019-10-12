@@ -1,0 +1,5 @@
+{
+  "private": {
+    "MONGO_URL": "mongodb+srv://gregorioospina:anipsomongo98@gregocluster-yaney.mongodb.net/test?retryWrites=true&w=majority"
+  }
+}
