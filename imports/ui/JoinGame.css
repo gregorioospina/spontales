@@ -28,6 +28,11 @@ h1 {
   font-size: 25px;
 }
 
+#gamecode-input-label {
+  color: transparent;
+  font-size: 0.1px;
+}
+
 #joingame-button {
   background: #ab05f2;
   border: #ab05f2;

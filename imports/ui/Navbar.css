@@ -13,6 +13,10 @@
   margin-right: 15px;
 }
 
+#login-sign-in-link {
+  font-size: 25px;
+}
+
 #login-name-link {
   color: #ab05f2;
   font-family: "Raleway";
