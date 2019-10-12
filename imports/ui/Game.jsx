@@ -8,7 +8,7 @@ import "./Animations.css";
 
 const Game = () => {
   let n = {
-    name: "Juan",
+    name: "Juanito",
     id: 1
   };
   let p = [
