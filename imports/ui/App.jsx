@@ -7,7 +7,7 @@ const App = () => (
   <Router>
     <div id="content-container">
       <Switch>
-        <Route path="/" exact component={JoinGame} />
+        <Route path="*" exact component={JoinGame} />
         <Route path="/gamenew" exact component={Game} />
       </Switch>
     </div>
