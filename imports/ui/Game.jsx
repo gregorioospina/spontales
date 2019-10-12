@@ -13,7 +13,7 @@ const Game = () => {
   };
   let p = [
     {
-      name: "Juan",
+      name: "Juanito",
       id: 1
     },
     {
