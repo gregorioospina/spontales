@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
+import PropTypes from "prop-types";
 import Navbar from "./Navbar";
+import PastgamesComp from "./PastGames";
 import "./Menu.css";
+import { Pastgames } from "../api/pastgames";
 
-const Menu = () => {
+const Menu = props => {
   return (
     <div>
       <div>
@@ -38,32 +42,7 @@ const Menu = () => {
             <div className="card">
               <div className="card-body">
                 <h2 className="card-title">Past games</h2>
-                <ul className="list-group">
-                  <li>
-                    <a
-                      href="/"
-                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                    >
-                      Laundry
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                    >
-                      Laundry
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/"
-                      className="list-group-item d-flex justify-content-between align-items-center pastgame"
-                    >
-                      Laundry
-                    </a>
-                  </li>
-                </ul>
+                <PastgamesComp pastgames={props.pastgames} />
               </div>
             </div>
           </div>
@@ -97,6 +76,13 @@ const Menu = () => {
   );
 };
 
+Menu.propTypes = {
+  pastgames: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+};
+
 export default withTracker(() => {
-  return {};
+  Meteor.subscribe("pastgames");
+  return {
+    pastgames: Pastgames.find({}).fetch()
+  };
 })(Menu);
