@@ -32,20 +32,22 @@
   border-style: none;
 }
 
-#result-h1 {
-  color: var(--color2);
+#results-container {
+  margin-top: 13%;
+  width: 40%;
+  text-align: center;
 }
 
-#text-container-results {
-  margin: 20%;
-  margin-top: 7%;
-  margin-bottom: 0;
+#result-h1 {
+  color: var(--color2);
+  font-size: 65px;
 }
 
 #result-text {
-  font-size: 25pt;
-  margin-left: 5%;
-  margin-right: 5%;
+  font-size: 30px;
+}
+
+#goback-btn {
 }
 
 #lib-text {
@@ -53,7 +55,6 @@
 }
 
 .result-banner {
-  margin-left: 40%;
 }
 
 .container-deluxe {

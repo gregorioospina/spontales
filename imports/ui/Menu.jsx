@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
@@ -9,6 +9,12 @@ import "./Menu.css";
 import { Pastgames } from "../api/pastgames";
 
 const Menu = props => {
+  const [gamecode, setGamecode] = useState("");
+
+  const handleChangeName = evt => {
+    setGamecode(evt.target.value);
+  };
+
   return (
     <div>
       <div>
@@ -61,8 +67,10 @@ const Menu = props => {
                   className="form-control"
                   id="gamecode-input-menu"
                   placeholder="Game Code"
+                  value={gamecode}
+                  onChange={handleChangeName}
                 ></input>
-                <Link to={"/gamenew"}>
+                <Link to={"/game/" + gamecode}>
                   <button className="btn btn-dark" id="joingamemenu-button">
                     Play
                   </button>
