@@ -11,6 +11,8 @@ import { Pastgames } from "../api/pastgames";
 const Menu = props => {
   const [gamecode, setGamecode] = useState("");
 
+  const newgamecode = Math.floor(Math.random() * 5000) + 1000;
+
   const handleChangeName = evt => {
     setGamecode(evt.target.value);
   };
@@ -36,7 +38,7 @@ const Menu = props => {
                 <p className="card-text">
                   ¡ Create a game to play with your friends !
                 </p>
-                <Link to={"/game"}>
+                <Link to={"/game/" + newgamecode}>
                   <button className="btn btn-dark" id="creategame-button">
                     Create New Game
                   </button>

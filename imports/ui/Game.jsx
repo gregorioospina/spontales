@@ -192,6 +192,7 @@ const Game = () => {
                   type="button"
                   className="btn btn-warning"
                   onClick={combineInput}
+                  id="submitgame-btn"
                 >
                   Submit
                 </button>
