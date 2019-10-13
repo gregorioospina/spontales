@@ -141,13 +141,7 @@ const Game = () => {
   };
 
   const returnResult = () => {
-    Meteor.call("pastgames.insert", (game_id, result, players), err => {
-      if (err) {
-        setErr(err);
-        return;
-      }
-      console.log("agregado el juego", game_id);
-    });
+    Meteor.call("pastgames.insert", "title", 15264, result);
     return (
       <>
         <header>
@@ -242,42 +236,39 @@ let LoadGame = withTracker(() => {
   let randomIndex = Math.floor(Math.random() * game.length);
   let element = game[randomIndex];
   /*let fll = element.fill; */
-
-  let fill = {
-    fill: [
-      {
-        id: 1,
-        blank: "Adjective",
-        text: "Hello little boy",
-        order: 1
-      },
-      {
-        id: 2,
-        blank: "Noun",
-        text: "Chummy chum chum",
-        order: 1
-      },
-      {
-        id: 3,
-        blank: "Place",
-        text: "Wanna go?",
-        order: 1
-      },
-      {
-        id: 4,
-        blank: "Noun",
-        text: "Chummy chum chum",
-        order: 1
-      },
-      {
-        id: 5,
-        blank: "Place",
-        text: "Wanna go?",
-        order: 1
-      }
-    ]
-  };
-  return fill;
+  let fill = [
+    {
+      id: 1,
+      blank: "Adjective",
+      text: "Hello little boy",
+      order: 1
+    },
+    {
+      id: 2,
+      blank: "Noun",
+      text: "Chummy chum chum",
+      order: 1
+    },
+    {
+      id: 3,
+      blank: "Place",
+      text: "Wanna go?",
+      order: 1
+    },
+    {
+      id: 4,
+      blank: "Noun",
+      text: "Chummy chum chum",
+      order: 1
+    },
+    {
+      id: 5,
+      blank: "Place",
+      text: "Wanna go?",
+      order: 1
+    }
+  ];
+  return { fill: fill };
 })(Game);
 
 Game.defaultProps = {
