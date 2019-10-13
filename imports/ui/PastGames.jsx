@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import "./PastGames.css";
 
 const PastGames = props => {
+  console.log(props);
   return (
     <ul className="list-group">
       {props.pastgames.map(game => (
-        <li key={game.code}>
+        <li key={game._id}>
           <a
             href="/"
             className="list-group-item d-flex justify-content-between align-items-center pastgame"
