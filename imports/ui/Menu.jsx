@@ -36,7 +36,7 @@ const Menu = props => {
                 <p className="card-text">
                   ¡ Create a game to play with your friends !
                 </p>
-                <Link to={"/gamenew"}>
+                <Link to={"/game"}>
                   <button className="btn btn-dark" id="creategame-button">
                     Create New Game
                   </button>

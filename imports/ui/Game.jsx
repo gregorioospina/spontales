@@ -9,7 +9,7 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import { GamesRepo } from "../api/game-repo";
+import { GamesRepo } from "../api/game";
 
 const Game = () => {
   let p = [
