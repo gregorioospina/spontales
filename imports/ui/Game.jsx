@@ -281,7 +281,7 @@ Game.defaultProps = {
   ]
 };
 
-Game.PropTypes = {
+Game.propTypes = {
   players: PropTypes.array,
   fill: PropTypes.array,
   game_id: PropTypes.string
