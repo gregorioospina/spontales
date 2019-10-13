@@ -7,7 +7,7 @@ const PastGames = props => {
   return (
     <ul className="list-group">
       {props.pastgames.map(game => (
-        <li key={game.code}>
+        <li key={game._id}>
           <a
             href="/"
             className="list-group-item d-flex justify-content-between align-items-center pastgame"

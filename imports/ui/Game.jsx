@@ -142,14 +142,11 @@ const Game = () => {
   };
 
   const returnResult = () => {
-    let titulo = result.split(" ")[1];
-    console.log(titulo);
-    Meteor.call("pastgames.insert", (titulo, game_id, result), err => {
+    Meteor.call("pastgames.insert", "title", 1524, result, err => {
       if (err) {
         setErr(err);
         return;
       }
-      console.log("agregado el juego", game_id);
     });
     return (
       <>
