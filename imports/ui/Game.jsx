@@ -236,44 +236,47 @@ const Game = () => {
 
 let LoadGame = withTracker(() => {
   Meteor.subscribe("games_repo");
-  const game = GamesRepo.find({}).fetch();
+  //const game = GamesRepo.find({}).fetch();
+  const game = [];
   console.log(game);
   let randomIndex = Math.floor(Math.random() * game.length);
   let element = game[randomIndex];
   /*let fll = element.fill; */
 
-  let fill = [
-    {
-      id: 1,
-      blank: "Adjective",
-      text: "Hello little boy",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text: "Chummy chum chum",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Place",
-      text: "Wanna go?",
-      order: 1
-    },
-    {
-      id: 4,
-      blank: "Noun",
-      text: "Chummy chum chum",
-      order: 1
-    },
-    {
-      id: 5,
-      blank: "Place",
-      text: "Wanna go?",
-      order: 1
-    }
-  ];
+  let fill = {
+    fill: [
+      {
+        id: 1,
+        blank: "Adjective",
+        text: "Hello little boy",
+        order: 1
+      },
+      {
+        id: 2,
+        blank: "Noun",
+        text: "Chummy chum chum",
+        order: 1
+      },
+      {
+        id: 3,
+        blank: "Place",
+        text: "Wanna go?",
+        order: 1
+      },
+      {
+        id: 4,
+        blank: "Noun",
+        text: "Chummy chum chum",
+        order: 1
+      },
+      {
+        id: 5,
+        blank: "Place",
+        text: "Wanna go?",
+        order: 1
+      }
+    ]
+  };
   return fill;
 })(Game);
 
