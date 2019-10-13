@@ -141,13 +141,7 @@ const Game = () => {
   };
 
   const returnResult = () => {
-    Meteor.call("pastgames.insert", (game_id, result, players), err => {
-      if (err) {
-        setErr(err);
-        return;
-      }
-      console.log("agregado el juego", game_id);
-    });
+    Meteor.call("pastgames.insert", "title", 15264, result);
     return (
       <>
         <header>
@@ -274,7 +268,7 @@ let LoadGame = withTracker(() => {
       order: 1
     }
   ];
-  return fill;
+  return { fill: fill };
 })(Game);
 
 Game.defaultProps = {

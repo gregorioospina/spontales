@@ -11,9 +11,11 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   "pastgames.insert"(name, code, story) {
-    Pastgames.upsert(
-      { name, code, story },
-      { name, code, createdAt: new Date(), story }
-    );
+    Pastgames.insert({
+      name: name,
+      code: code,
+      story: story,
+      createdAt: new Date()
+    });
   }
 });
