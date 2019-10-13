@@ -9,7 +9,7 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import { GamesRepo } from "../api/game";
+import { GamesRepo } from "../api/game-repo";
 
 const Game = () => {
   let p = [
@@ -230,12 +230,12 @@ const Game = () => {
 
 let LoadGame = withTracker(() => {
   Meteor.subscribe("games_repo");
-  const game = GamesRepo.find({}).fetch();
+  //const game = GamesRepo.find({}).fetch();
+  const game = [];
   console.log(game);
   let randomIndex = Math.floor(Math.random() * game.length);
   let element = game[randomIndex];
   /*let fll = element.fill; */
-
   let fill = [
     {
       id: 1,
