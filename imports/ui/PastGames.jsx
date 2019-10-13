@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./PastGames.css";
 
 const PastGames = props => {
+  console.log(props);
   return (
     <ul className="list-group">
       {props.pastgames.map(game => (

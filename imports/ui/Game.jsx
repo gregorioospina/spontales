@@ -116,6 +116,7 @@ const Game = () => {
   };
 
   const showRivals = () => {
+    console.log(window.location.pathname);
     return players.map(player => {
       return <PlayerCard player={player} />;
     });
@@ -141,7 +142,9 @@ const Game = () => {
   };
 
   const returnResult = () => {
-    Meteor.call("pastgames.insert", (game_id, result, players), err => {
+    let titulo = result.split(" ")[1];
+    console.log(titulo);
+    Meteor.call("pastgames.insert", (titulo, game_id, result), err => {
       if (err) {
         setErr(err);
         return;
@@ -192,6 +195,7 @@ const Game = () => {
                   type="button"
                   className="btn btn-warning"
                   onClick={combineInput}
+                  id="submitgame-btn"
                 >
                   Submit
                 </button>
