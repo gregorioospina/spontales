@@ -32,31 +32,31 @@ const Game = () => {
   ];
   let f = [
     {
-      id: 1,
+      id: 0,
       blank: "Adjective",
       text: "Hello little boy",
       order: 1
     },
     {
-      id: 2,
+      id: 1,
       blank: "Noun",
       text: "Chummy chum chum",
       order: 1
     },
     {
-      id: 3,
+      id: 2,
       blank: "Place",
       text: "Wanna go?",
       order: 1
     },
     {
-      id: 4,
+      id: 3,
       blank: "Noun",
       text: "Chummy chum chum",
       order: 1
     },
     {
-      id: 5,
+      id: 4,
       blank: "Place",
       text: "Wanna go?",
       order: 1
@@ -154,23 +154,17 @@ const Game = () => {
           <NavBar />
         </header>
 
-        <div className="container" id="results-container">
-          <div className="result-banner">
-            <h1 id="result-h1"> Result! </h1>
+        <div className="container-fluid" id="results-container">
+          <h1 id="result-h1"> Result! </h1>
+          <div id="text-container-results">
+            <div id="result-text">{result}</div>
           </div>
-          <div className="">
-            <div id="text-container-results">
-              <div id="result-text">{result}</div>
-              <div id="lil-margin">
-                <Link to={"/game"}>
-                  <button className="btn btn-dark btn-gob">
-                    {" "}
-                    &#x2190; GO BACK
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Link to={"/"}>
+            <button className="btn btn-dark btn-gob" id="goback-btn">
+              {" "}
+              &#x2190; Go Back
+            </button>
+          </Link>
         </div>
       </>
     );
