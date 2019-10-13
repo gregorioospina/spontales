@@ -32,31 +32,31 @@ const Game = () => {
   ];
   let f = [
     {
-      id: 1,
+      id: 0,
       blank: "Adjective",
       text: "Hello little boy",
       order: 1
     },
     {
-      id: 2,
+      id: 1,
       blank: "Noun",
       text: "Chummy chum chum",
       order: 1
     },
     {
-      id: 3,
+      id: 2,
       blank: "Place",
       text: "Wanna go?",
       order: 1
     },
     {
-      id: 4,
+      id: 3,
       blank: "Noun",
       text: "Chummy chum chum",
       order: 1
     },
     {
-      id: 5,
+      id: 4,
       blank: "Place",
       text: "Wanna go?",
       order: 1
