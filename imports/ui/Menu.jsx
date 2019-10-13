@@ -15,6 +15,13 @@ const Menu = props => {
     setGamecode(evt.target.value);
   };
 
+  const handleCreateGame = () => {
+    let gamec = Math.floor(Math.random() * 1112 + 3000);
+    setGamecode(gamec);
+
+    Meteor.call("games.insert", "title", gamec, null);
+  };
+
   return (
     <div>
       <div>
@@ -37,7 +44,11 @@ const Menu = props => {
                   ¡ Create a game to play with your friends !
                 </p>
                 <Link to={"/gamenew"}>
-                  <button className="btn btn-dark" id="creategame-button">
+                  <button
+                    className="btn btn-dark"
+                    id="creategame-button"
+                    onClick={handleCreateGame}
+                  >
                     Create New Game
                   </button>
                 </Link>

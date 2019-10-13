@@ -11,7 +11,10 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "games.insert"(code, players, story) {
-    Games.upsert({ code, players, story }, { code, players, story });
+  "games.insert"(title, code, players, story) {
+    Games.upsert(
+      { title, code, players, story },
+      { title, code, players, story }
+    );
   }
 });
