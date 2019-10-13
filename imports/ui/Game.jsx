@@ -154,23 +154,17 @@ const Game = () => {
           <NavBar />
         </header>
 
-        <div className="container" id="results-container">
-          <div className="result-banner">
-            <h1 id="result-h1"> Result! </h1>
+        <div className="container-fluid" id="results-container">
+          <h1 id="result-h1"> Result! </h1>
+          <div id="text-container-results">
+            <div id="result-text">{result}</div>
           </div>
-          <div className="">
-            <div id="text-container-results">
-              <div id="result-text">{result}</div>
-              <div id="lil-margin">
-                <Link to={"/game"}>
-                  <button className="btn btn-dark btn-gob">
-                    {" "}
-                    &#x2190; GO BACK
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Link to={"/"}>
+            <button className="btn btn-dark btn-gob" id="goback-btn">
+              {" "}
+              &#x2190; Go Back
+            </button>
+          </Link>
         </div>
       </>
     );
