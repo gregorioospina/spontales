@@ -33,7 +33,7 @@
 }
 
 #results-container {
-  margin-top: 13%;
+  margin-top: 8%;
   width: 40%;
   text-align: center;
 }
@@ -48,13 +48,26 @@
 }
 
 #goback-btn {
+  margin-top: 8%;
+}
+
+#goback-btn,
+#submitgame-btn {
+  height: 40px;
+  width: 140px;
+  background: var(--color2);
+  border-color: var(--color2);
+  color: whitesmoke;
+  font-size: 20px;
+}
+
+#goback-btn:hover,
+#submitgame-btn:hover {
+  color: var(--color3);
 }
 
 #lib-text {
   font-size: 17pt;
-}
-
-.result-banner {
 }
 
 .container-deluxe {
