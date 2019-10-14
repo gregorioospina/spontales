@@ -14,7 +14,7 @@ import { Blanks } from "../api/pastgames";
 
 const Game = props => {
   let p = [];
-  let [game_id, setGameId] = useState(props.props.g_id);
+  let game_id = props.props.g_id;
 
   let [reRender, setReRender] = useState(false);
   let [playername, setPlayername] = useState(false);

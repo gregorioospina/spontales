@@ -48,10 +48,10 @@ Meteor.methods({
     );
   },
   "submits.update"(code) {
-    Submits.update({ submits, code }, { $inc: { submits: 1 } });
+    Submits.update({ code: code }, { $inc: { submits: 1 } });
   },
   "submits.insert"(code) {
-    Submits.insert({ submits, code });
+    Submits.insert({ submits: 1, code });
   },
   "blanks.update"(id, code, text) {
     Blanks.update({ id: id, code: code }, { $set: { blank: text } });
