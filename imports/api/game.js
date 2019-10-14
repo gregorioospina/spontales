@@ -2,13 +2,13 @@ import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 
 export const Games = new Mongo.Collection("games");
-export const GamesRepo = new Mongo.Collection("games-repo");
+export const GamesRepo = new Mongo.Collection("gamesrepo");
 
-if (Meteor.isServer) {
-  Meteor.publish("games", () => {
+if (true) {
+  Meteor.publish("games", function() {
     return Games.find({});
   });
-  Meteor.publish("games-repo", () => {
+  Meteor.publish("gamesrepo", function() {
     return GamesRepo.find({});
   });
 }

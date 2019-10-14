@@ -8,7 +8,7 @@ const PlayerCard = player => {
   return (
     <div className="card playercard" id={`player${id}`}>
       <div id="opacity-card">
-        <div class="row">
+        <div className="row">
           <img
             src={`/shield${id}.png`}
             className="card-img-top shield-img"
