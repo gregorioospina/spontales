@@ -258,10 +258,9 @@ const Game = props => {
 
   const combineInput = () => {
     Meteor.subscribe("blanks", function() {
-      let f = Blanks.find({}).fetch();
-      console.log(f);
+      let B = Blanks.find({ code: game_id }).fetch({});
       let x = "";
-      f.map(fil => {
+      B.map(fil => {
         if (fil.order === 0) {
           x = x + " " + fil.text + " " + fil.blank;
         } else {
@@ -277,7 +276,6 @@ const Game = props => {
 
   const ReRenderCheck = () => {
     if (reRender === true) {
-      console.log(reRender, "reRender");
       return printLibText();
     } else {
       return "LOADING";
@@ -322,7 +320,7 @@ const Game = props => {
                 </div>
                 <div className="col-9">
                   <div id="text-container">
-                    <div id="lib-text">{printLibText()}</div>
+                    <div id="lib-text">{ReRenderCheck()}</div>
                   </div>
                   <div id="button-submit">
                     <button
