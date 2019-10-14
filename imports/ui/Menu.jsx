@@ -44,7 +44,7 @@ const Menu = props => {
               <div className="card-body">
                 <h2 className="card-title">Create Game</h2>
                 <p className="card-text">
-                  ¡ Create a game to play with your friends !
+                  Create a game to play with your friends !
                 </p>
                 <Link to={"/game/" + newgamecode}>
                   <button
@@ -75,7 +75,7 @@ const Menu = props => {
               />
               <div className="card-body">
                 <h2 className="card-title">Join a Game</h2>
-                <p className="card-text">¡Join a game already created!</p>
+                <p className="card-text">Join a game already created!</p>
                 <input
                   type="text"
                   className="form-control"

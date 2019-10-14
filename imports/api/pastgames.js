@@ -46,7 +46,7 @@ Meteor.methods({
   "blanks.update"(id, code, text) {
     Blanks.update({ id: id, code: code }, { $set: { blank: text } });
   },
-  "players.insert"(name) {
-    Players.upsert({ name }, { name, id: 1 });
+  "players.insert"(name, code) {
+    Players.upsert({ name, code }, { name, code, id: 1 });
   }
 });

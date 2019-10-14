@@ -60,7 +60,7 @@ const Game = props => {
   };
 
   const addPlayer = () => {
-    Meteor.call("players.insert", nickname);
+    Meteor.call("players.insert", nickname, game_id);
     setPlayername(true);
   };
 
