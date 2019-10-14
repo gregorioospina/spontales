@@ -236,18 +236,31 @@ const Game = props => {
   };
 
   const combineInput = () => {
-    let x = "";
-    fill.map(fil => {
-      if (fil.order === 0) {
-        x = x + " " + fil.text + " " + fil.blank;
-      } else {
-        x = x + " " + fil.blank + " " + fil.text;
-      }
+    Meteor.subscribe("blanks", function() {
+      let f = Blanks.find({}).fetch();
+      console.log(f);
+      let x = "";
+      f.map(fil => {
+        if (fil.order === 0) {
+          x = x + " " + fil.text + " " + fil.blank;
+        } else {
+          x = x + " " + fil.blank + " " + fil.text;
+        }
+      });
+      setResult(x);
+      setLoadingText("Waiting for everyones' input ");
+      setLoading(true);
+      setSubmit(submits + 1);
     });
-    setResult(x);
-    setLoadingText("Waiting for everyones' input ");
-    setLoading(true);
-    setSubmit(submits + 1);
+  };
+
+  const ReRenderCheck = () => {
+    if (reRender === true) {
+      console.log(reRender, "reRender");
+      return printLibText();
+    } else {
+      return "LOADING";
+    }
   };
 
   const returnResult = () => {
@@ -270,15 +283,6 @@ const Game = props => {
         </div>
       </>
     );
-  };
-
-  const ReRenderCheck = () => {
-    if (reRender === true) {
-      console.log(reRender, "reRender");
-      return printLibText();
-    } else {
-      return "LOADING";
-    }
   };
 
   const returnGame = () => {
