@@ -2,6 +2,7 @@ import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 
 export const Pastgames = new Mongo.Collection("pastgames");
+export const Games = new Mongo.Collection("games");
 
 if (Meteor.isServer) {
   Meteor.publish("pastgames", () => {
@@ -17,5 +18,8 @@ Meteor.methods({
       story: story,
       createdAt: new Date()
     });
+  },
+  "games.insert"(code, players, story) {
+    Games.insert({ code, players, story });
   }
 });

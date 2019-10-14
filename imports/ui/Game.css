@@ -160,3 +160,9 @@
   border-width: 3pt;
   background: var(--color4);
 }
+
+#nickname-input {
+  text-align: center;
+  height: 100%;
+  font-size: 25px;
+}
