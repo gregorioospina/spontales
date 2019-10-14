@@ -22,7 +22,9 @@ const JoinGame = () => {
           <form>
             <div className="form-group row">
               <div className="col" id="gamecode-input-container">
-                <label htmlFor="gamecode-input"></label>
+                <label htmlFor="gamecode-input" id="gamecode-input-label">
+                  Insert Game Code
+                </label>
                 <input
                   type="text"
                   className="form-control"
