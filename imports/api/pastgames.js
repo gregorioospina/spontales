@@ -56,7 +56,10 @@ Meteor.methods({
   "blanks.update"(id, code, text) {
     Blanks.update({ id: id, code: code }, { $set: { blank: text } });
   },
-  "players.insert"(name, code, id) {
-    Players.upsert({ name, code, id }, { name, code, id });
+  "players.insert"(name, code) {
+    Players.upsert(
+      { name, code },
+      { name, code, id: Math.floor(Math.random() * 10) % 4 }
+    );
   }
 });

@@ -29,6 +29,10 @@ body {
   margin-bottom: 5px;
 }
 
+#gamecode-input-menu-label {
+  margin-bottom: 20px;
+}
+
 #joingamemenu-button {
   background: #ab05f2;
   border-color: #ab05f2;

@@ -15,6 +15,7 @@ class LibInput extends React.Component {
     return (
       <input
         type="text"
+        id={this.props.id}
         className={this.props.classType}
         onChange={this.sendData}
         placeholder={this.props.placeholder}

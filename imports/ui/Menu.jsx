@@ -75,7 +75,12 @@ const Menu = props => {
               />
               <div className="card-body">
                 <h2 className="card-title">Join a Game</h2>
-                <p className="card-text">Join a game already created!</p>
+                <label
+                  htmlFor="gamecode-input-menu"
+                  id="gamecode-input-menu-label"
+                >
+                  Join a game already created!
+                </label>
                 <input
                   type="text"
                   className="form-control"
