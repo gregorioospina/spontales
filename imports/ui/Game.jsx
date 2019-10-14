@@ -11,7 +11,6 @@ import LibInput from "./LibInput";
 import "./Game.css";
 import { Games, Players, Submits } from "../api/pastgames";
 import { Blanks } from "../api/pastgames";
-import { Tracker } from "meteor/tracker";
 
 const Game = props => {
   let p = [];
@@ -23,7 +22,6 @@ const Game = props => {
   let [players, setPlayers] = useState(p);
   let [fill, setFills] = useState(props.props.fll);
   let [loading, setLoading] = useState(false);
-  let [err, setErr] = useState({});
   let [loadingText, setLoadingText] = useState(
     "Waiting for the brave warriors who'll join you in battle"
   );
@@ -243,7 +241,7 @@ const Game = props => {
   const showRivals = () => {
     console.log(players);
     return players.map(player => {
-      return <PlayerCard player={player} />;
+      return <PlayerCard player={player} key={player._id} />;
     });
   };
 
@@ -287,12 +285,30 @@ const Game = props => {
   };
 
   const returnResult = () => {
-    Meteor.call("pastgames.insert", "title", game_id, result);
+    Meteor.call(
+      "pastgames.insert",
+      result.split(" ")[0] +
+        result.split(" ")[1] +
+        " " +
+        result.split(" ")[2] +
+        " " +
+        result.split(" ")[3] +
+        " " +
+        result.split(" ")[4] +
+        " " +
+        result.split(" ")[5] +
+        " " +
+        result.split(" ")[6] +
+        " " +
+        result.split(" ")[7],
+      game_id,
+      result
+    );
     return (
-      <>
-        <header>
+      <div role="main">
+        <div>
           <NavBar />
-        </header>
+        </div>
 
         <div className="container-fluid" id="results-container">
           <h1 id="result-h1"> Result! </h1>
@@ -304,7 +320,7 @@ const Game = props => {
             </button>
           </Link>
         </div>
-      </>
+      </div>
     );
   };
 
@@ -379,12 +395,12 @@ const Game = props => {
       setLoading(false);
     };
     return (
-      <>
+      <div role="main">
         <Loading textisimo={loadingText} />
         <button type="button" onClick={clickLoading}>
           Button
         </button>
-      </>
+      </div>
     );
   };
 
