@@ -34,6 +34,8 @@ const Game = props => {
   ];
   let [game_id, setGameId] = useState(props.props.g_id);
 
+  let [reRender, setReRender] = useState(false);
+
   let [players, setPlayers] = useState(p);
   console.log(props.props.fll, "constructor");
   let [fill, setFills] = useState(props.props.fll);
@@ -46,6 +48,8 @@ const Game = props => {
   let [result, setResult] = useState("");
 
   const handleInputChange = (text, id) => {
+    console.log(text, id);
+    console.log(fill, "fill");
     let copy = fill;
     copy[id].blank = text;
 
@@ -57,41 +61,39 @@ const Game = props => {
     Meteor.subscribe("games", function() {
       console.log("data ready");
       let games = Games.find({}).fetch({});
-      console.log(games, "games");
-
       let game = games.find(gm => {
         if (gm.code === game_id) {
           return gm;
         }
       });
-      console.log(game, "game");
       if (game !== undefined) {
-        console.log(game.story, "story");
+        console.log("Pre-existing game");
         setFills(game.story);
       } else {
         let uno = [
           {
+            id: 0,
+            blank: "Person",
+            text: "When my phone rang, and it was",
+            order: 1
+          },
+          {
+            id: 1,
+            blank: "Noun",
+            text: "telling me",
+            order: 1
+          },
+          {
             id: 2,
             blank: "Noun",
-            text: "Chummy chum chum",
+            text:
+              "had a heart attack. He didn't make it. Now it was up to me to become",
             order: 1
           },
           {
             id: 3,
-            blank: "Place",
-            text: "Wanna go?",
-            order: 1
-          },
-          {
-            id: 4,
-            blank: "Noun",
-            text: "Chummy chum chum",
-            order: 1
-          },
-          {
-            id: 5,
-            blank: "Place",
-            text: "Wanna go?",
+            blank: "Thing",
+            text: ", And put an end to this for once and for all.",
             order: 1
           }
         ];
@@ -186,10 +188,11 @@ const Game = props => {
         let randomIndex = Math.floor(Math.random() * 3);
         let _fill = fills[randomIndex];
         setFills(_fill);
-        console.log(_fill, "FILL");
+        console.log("New Game");
         Meteor.call("games.insert", game_id, players, _fill);
       }
     });
+    setReRender(true);
   }, []);
 
   const printLibText = () => {
@@ -234,8 +237,6 @@ const Game = props => {
 
   const combineInput = () => {
     let x = "";
-    // console.log("fill en combine Input");
-    // console.log(fill);
     fill.map(fil => {
       if (fil.order === 0) {
         x = x + " " + fil.text + " " + fil.blank;
@@ -243,8 +244,6 @@ const Game = props => {
         x = x + " " + fil.blank + " " + fil.text;
       }
     });
-    //console.log("x");
-    //console.log(x);
     setResult(x);
     setLoadingText("Waiting for everyones' input ");
     setLoading(true);
@@ -273,6 +272,15 @@ const Game = props => {
     );
   };
 
+  const ReRenderCheck = () => {
+    if (reRender === true) {
+      console.log(reRender, "reRender");
+      return printLibText();
+    } else {
+      return "LOADING";
+    }
+  };
+
   const returnGame = () => {
     return (
       <>
@@ -288,7 +296,7 @@ const Game = props => {
             </div>
             <div className="col-9">
               <div id="text-container">
-                <div id="lib-text">{printLibText()}</div>
+                <div id="lib-text">{ReRenderCheck()}</div>
               </div>
               <div id="button-submit">
                 <button
