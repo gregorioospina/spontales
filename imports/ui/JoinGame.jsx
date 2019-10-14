@@ -31,7 +31,7 @@ const JoinGame = () => {
                   value={gamecode}
                   onChange={handleChangeName}
                 ></input>
-                <Link to={"/game/" + gamecode}>
+                <Link to={`/game/${gamecode}`}>
                   <button className="btn btn-dark" id="joingame-button">
                     Join Game
                   </button>
