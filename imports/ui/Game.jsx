@@ -10,6 +10,8 @@ import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
 import { Games } from "../api/pastgames";
+import { Blanks } from "../api/pastgames";
+import { Tracker } from "meteor/tracker";
 
 const Game = props => {
   let p = [
@@ -48,6 +50,7 @@ const Game = props => {
     copy[id].blank = text;
 
     setFills(copy);
+    Meteor.call("blanks.update", id, text);
   };
 
   useEffect(() => {
@@ -194,6 +197,7 @@ const Game = props => {
       let _id = fil.id;
       let ct = `player-input-${_id}`;
       if (fil.order === 1) {
+        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
         return (
           <>
             <a> {fil.text} </a>
@@ -206,6 +210,7 @@ const Game = props => {
           </>
         );
       } else {
+        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
         return (
           <>
             <LibInput
