@@ -59,7 +59,7 @@ Meteor.methods({
   "players.insert"(name, code) {
     Players.upsert(
       { name, code },
-      { name, code, id: Math.floor(Math.random() * 10) % 4 }
+      { name, code, id: (Math.floor(Math.random() * 10) % 4) + 1 }
     );
   }
 });

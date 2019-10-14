@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Game.css";
 
 const PlayerCard = player => {
   console.log(player, "player");
-  let [playerName, setPlayerName] = useState(player.player.name);
-  let [id, setId] = useState(player.player.id);
+  let playerName = player.player.name;
+  let id = player.player.id;
 
   return (
-    <div className="card playercard" id={`player${id}`}>
+    <div className="card playercard" id={`player${id}`} key={id}>
       <div className="opacity-card">
         <div className="row">
           <img
