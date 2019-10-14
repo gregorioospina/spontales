@@ -35,7 +35,8 @@ const Game = props => {
   let [game_id, setGameId] = useState(props.props.g_id);
 
   let [reRender, setReRender] = useState(false);
-
+  let [playername, setPlayername] = useState(false);
+  let [nickname, setNickname] = useState("");
   let [players, setPlayers] = useState(p);
   console.log(props.props.fll, "constructor");
   let [fill, setFills] = useState(props.props.fll);
@@ -52,6 +53,15 @@ const Game = props => {
     copy[id].blank = text;
 
     Meteor.call("blanks.update", id, game_id, text);
+  };
+
+  const handleChangenickname = evt => {
+    setNickname(evt.target.value);
+  };
+
+  const addPlayer = () => {
+    Meteor.call("players.insert", nickname);
+    setPlayername(true);
   };
 
   useEffect(() => {
@@ -299,33 +309,62 @@ const Game = props => {
   const returnGame = () => {
     return (
       <>
-        <header>
-          <NavBar />
-        </header>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-3" id="rivals-column">
-              <label htmlFor="rivals-box"> Players: </label>
-              {showRivals()}
-            </div>
-            <div className="col-9">
-              <div id="text-container">
-                <div id="lib-text">{ReRenderCheck()}</div>
+        {playername ? (
+          <>
+            <header>
+              <NavBar />
+            </header>
+            <div className="container">
+              <div className="row">
+                <div className="col-3" id="rivals-column">
+                  <label htmlFor="rivals-box"> Players: </label>
+                  {showRivals()}
+                </div>
+                <div className="col-9">
+                  <div id="text-container">
+                    <div id="lib-text">{printLibText()}</div>
+                  </div>
+                  <div id="button-submit">
+                    <button
+                      type="button"
+                      className="btn btn-warning"
+                      onClick={combineInput}
+                      id="submitgame-btn"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div id="button-submit">
-                <button
-                  type="button"
-                  className="btn btn-warning"
-                  onClick={combineInput}
-                  id="submitgame-btn"
-                >
-                  Submit
-                </button>
+            </div>{" "}
+          </>
+        ) : (
+          <div className="container-fluid" id="joingame-container">
+            <h1 id="title">Enter a nickname</h1>
+            <form>
+              <div className="form-group row">
+                <div className="col" id="gamecode-input-container">
+                  <label htmlFor="nickname-input"></label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="nickname-input"
+                    placeholder="Nickname"
+                    value={nickname}
+                    onChange={handleChangenickname}
+                  ></input>
+                  <button
+                    className="btn btn-dark"
+                    id="joingame-button"
+                    onClick={addPlayer}
+                  >
+                    Play Now
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-        </div>
+        )}
       </>
     );
   };
