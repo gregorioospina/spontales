@@ -5,6 +5,7 @@ export const Pastgames = new Mongo.Collection("pastgames");
 export const GamesRepo = new Mongo.Collection("gamesrepo");
 export const Games = new Mongo.Collection("games");
 export const Blanks = new Mongo.Collection("blanks");
+export const Players = new Mongo.Collection("players");
 
 if (Meteor.isServer) {
   Meteor.publish("pastgames", () => {
@@ -18,6 +19,9 @@ if (Meteor.isServer) {
   });
   Meteor.publish("blanks", function() {
     return Blanks.find({});
+  });
+  Meteor.publish("players", function() {
+    return Players.find({});
   });
 }
 
@@ -40,5 +44,9 @@ Meteor.methods({
   "blanks.update"(id, text) {
     console.log("blanks update");
     Blanks.update({ id: id }, { $set: { blank: text } });
+  },
+  "players.insert"(name) {
+    console.log("player insert");
+    Players.upsert({ name }, { name, id: 1 });
   }
 });

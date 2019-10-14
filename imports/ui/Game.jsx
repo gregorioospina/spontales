@@ -48,12 +48,9 @@ const Game = props => {
   let [result, setResult] = useState("");
 
   const handleInputChange = (text, id) => {
-    console.log(text, id);
-    console.log(fill, "fill");
     let copy = fill;
     copy[id].blank = text;
 
-    setFills(copy);
     Meteor.call("blanks.update", id, text);
   };
 
@@ -264,7 +261,7 @@ const Game = props => {
   };
 
   const returnResult = () => {
-    Meteor.call("pastgames.insert", "title", 15264, result);
+    Meteor.call("pastgames.insert", "title", game_id, result);
     return (
       <>
         <header>
@@ -349,7 +346,7 @@ let LoadGame = withTracker(() => {
   let codigo = window.location.pathname.split("/")[2];
   let fill = [
     {
-      id: 1,
+      id: 99,
       blank: "",
       text: "Loading....",
       order: 1
