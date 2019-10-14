@@ -37,13 +37,16 @@ Meteor.methods({
   "games.insert"(code, players, story) {
     Games.insert({ code, players, story });
   },
-  "blanks.insert"(id, blank, text, order) {
+  "blanks.insert"(id, code, blank, text, order) {
     console.log("blanks insert");
-    Blanks.upsert({ id, blank, text, order }, { id, blank, text, order });
+    Blanks.upsert(
+      { id, code, blank, text, order },
+      { id, code, blank, text, order }
+    );
   },
-  "blanks.update"(id, text) {
+  "blanks.update"(id, code, text) {
     console.log("blanks update");
-    Blanks.update({ id: id }, { $set: { blank: text } });
+    Blanks.update({ id: id, code: code }, { $set: { blank: text } });
   },
   "players.insert"(name) {
     console.log("player insert");

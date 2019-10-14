@@ -51,7 +51,7 @@ const Game = props => {
     let copy = fill;
     copy[id].blank = text;
 
-    Meteor.call("blanks.update", id, text);
+    Meteor.call("blanks.update", id, game_id, text);
   };
 
   useEffect(() => {
@@ -197,7 +197,14 @@ const Game = props => {
       let _id = fil.id;
       let ct = `player-input-${_id}`;
       if (fil.order === 1) {
-        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
+        Meteor.call(
+          "blanks.insert",
+          game_id,
+          fil.id,
+          fil.blank,
+          fil.text,
+          fil.order
+        );
         return (
           <>
             <a> {fil.text} </a>
@@ -210,7 +217,14 @@ const Game = props => {
           </>
         );
       } else {
-        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
+        Meteor.call(
+          "blanks.insert",
+          game_id,
+          fil.id,
+          fil.blank,
+          fil.text,
+          fil.order
+        );
         return (
           <>
             <LibInput
