@@ -218,6 +218,9 @@ const Game = props => {
         return (
           <>
             <a> {fil.text} </a>
+            <label htmlFor={_id} className="game-input-label">
+              .
+            </label>
             <LibInput
               classType={ct}
               placeholder={fil.blank}
@@ -237,6 +240,9 @@ const Game = props => {
         );
         return (
           <>
+            <label htmlFor={_id} className="game-input-label">
+              .
+            </label>
             <LibInput
               classType={ct}
               placeholder={fil.blank}
@@ -308,15 +314,16 @@ const Game = props => {
 
   const returnGame = () => {
     return (
-      <>
+      <div role="main">
         {playername ? (
           <>
-            <header>
+            <div>
               <NavBar />
-            </header>
+            </div>
             <div className="container">
               <div className="row">
                 <div className="col-3" id="rivals-column">
+                  <h1>Game</h1>
                   <label htmlFor="rivals-box"> Players: </label>
                   {showRivals()}
                 </div>
@@ -344,7 +351,9 @@ const Game = props => {
             <form>
               <div className="form-group row">
                 <div className="col" id="gamecode-input-container">
-                  <label htmlFor="nickname-input"></label>
+                  <label htmlFor="nickname-input" id="gamecode-input-label">
+                    Insert Game Code
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -365,7 +374,7 @@ const Game = props => {
             </form>
           </div>
         )}
-      </>
+      </div>
     );
   };
 
