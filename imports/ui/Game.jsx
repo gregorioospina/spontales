@@ -199,8 +199,8 @@ const Game = props => {
       if (fil.order === 1) {
         Meteor.call(
           "blanks.insert",
-          game_id,
           fil.id,
+          game_id,
           fil.blank,
           fil.text,
           fil.order
@@ -219,8 +219,8 @@ const Game = props => {
       } else {
         Meteor.call(
           "blanks.insert",
-          game_id,
           fil.id,
+          game_id,
           fil.blank,
           fil.text,
           fil.order
