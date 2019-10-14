@@ -180,7 +180,7 @@ const Game = props => {
         Meteor.call("games.insert", game_id, players, _fill);
       }
     });
-    Meteor.call("submits.insert", 1, game_id);
+    Meteor.call("submits.insert", game_id);
     setReRender(true);
   }, []);
 
@@ -267,12 +267,6 @@ const Game = props => {
       setResult(x);
       setLoadingText("Waiting for everyones' input ");
       setLoading(true);
-      Meteor.call("submits.update", game_id);
-      Meteor.subscribe("submits", function() {
-        let sub = Submits.find({ code: game_id });
-        console.log(sub, "sub");
-        setSubmit(sub.submits);
-      });
     });
   };
 
@@ -408,7 +402,7 @@ const Game = props => {
     if (loading === true) {
       return returnLoading();
     } else {
-      return submits >= 3 ? returnResult() : returnGame();
+      return submits >= 1 ? returnResult() : returnGame();
     }
   };
 
