@@ -267,6 +267,7 @@ const Game = props => {
       setResult(x);
       setLoadingText("Waiting for everyones' input ");
       setLoading(true);
+      setSubmit(submits + 1);
     });
   };
 
