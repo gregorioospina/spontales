@@ -13,8 +13,4 @@ if (true) {
   });
 }
 
-Meteor.methods({
-  "games.insert"(code, players, story) {
-    Games.upsert({ code, players, story }, { code, players, story });
-  }
-});
+Meteor.methods({});
