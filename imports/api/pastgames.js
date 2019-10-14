@@ -11,6 +11,9 @@ if (Meteor.isServer) {
   Meteor.publish("pastgames", () => {
     return Pastgames.find({});
   });
+  Meteor.publish("games", function() {
+    return Games.find({});
+  });
   Meteor.publish("gamesrepo", function() {
     return GamesRepo.find({});
   });
