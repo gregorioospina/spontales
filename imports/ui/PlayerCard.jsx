@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Game.css";
 
 const PlayerCard = player => {
+  console.log(player, "player");
   let [playerName, setPlayerName] = useState(player.player.name);
   let [id, setId] = useState(player.player.id);
 

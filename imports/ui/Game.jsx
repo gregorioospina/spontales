@@ -9,36 +9,18 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import { Games } from "../api/pastgames";
+import { Games, Players, Submits } from "../api/pastgames";
 import { Blanks } from "../api/pastgames";
 import { Tracker } from "meteor/tracker";
 
 const Game = props => {
-  let p = [
-    {
-      name: "Juanito",
-      id: 1
-    },
-    {
-      name: "Grego",
-      id: 2
-    },
-    {
-      name: "Sergio",
-      id: 3
-    },
-    {
-      name: "John",
-      id: 4
-    }
-  ];
+  let p = [];
   let [game_id, setGameId] = useState(props.props.g_id);
 
   let [reRender, setReRender] = useState(false);
   let [playername, setPlayername] = useState(false);
   let [nickname, setNickname] = useState("");
   let [players, setPlayers] = useState(p);
-  console.log(props.props.fll, "constructor");
   let [fill, setFills] = useState(props.props.fll);
   let [loading, setLoading] = useState(false);
   let [err, setErr] = useState({});
@@ -61,6 +43,7 @@ const Game = props => {
 
   const addPlayer = () => {
     Meteor.call("players.insert", nickname, game_id);
+    refreshRivals();
     setPlayername(true);
   };
 
@@ -199,6 +182,7 @@ const Game = props => {
         Meteor.call("games.insert", game_id, players, _fill);
       }
     });
+    Meteor.call("submits.insert", 1, game_id);
     setReRender(true);
   }, []);
 
@@ -251,8 +235,17 @@ const Game = props => {
   };
 
   const showRivals = () => {
+    console.log(players);
     return players.map(player => {
       return <PlayerCard player={player} />;
+    });
+  };
+
+  const refreshRivals = () => {
+    Meteor.subscribe("players", function() {
+      let playrs = Players.find({ code: game_id }).fetch({});
+      setPlayers(playrs);
+      console.log(players);
     });
   };
 
@@ -270,7 +263,12 @@ const Game = props => {
       setResult(x);
       setLoadingText("Waiting for everyones' input ");
       setLoading(true);
-      setSubmit(submits + 1);
+      Meteor.call("submits.update", game_id);
+      Meteor.subscribe("submits", function() {
+        let sub = Submits.find({ code: game_id });
+        console.log(sub, "sub");
+        setSubmit(sub.submits);
+      });
     });
   };
 
@@ -385,7 +383,7 @@ const Game = props => {
     if (loading === true) {
       return returnLoading();
     } else {
-      return submits >= 1 ? returnResult() : returnGame();
+      return submits >= 3 ? returnResult() : returnGame();
     }
   };
 
