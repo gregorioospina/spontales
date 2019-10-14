@@ -9,7 +9,7 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import { GamesRepo } from "../api/pastgames";
+import { Blanks } from "../api/pastgames";
 import { Tracker } from "meteor/tracker";
 
 const Game = props => {
@@ -49,6 +49,7 @@ const Game = props => {
     copy[id].blank = text;
 
     setFills(copy);
+    Meteor.call("blanks.update", id, text);
   };
 
   const printLibText = () => {
@@ -56,6 +57,7 @@ const Game = props => {
       let _id = fil.id;
       let ct = `player-input-${_id}`;
       if (fil.order === 1) {
+        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
         return (
           <>
             <a> {fil.text} </a>
@@ -68,6 +70,7 @@ const Game = props => {
           </>
         );
       } else {
+        Meteor.call("blanks.insert", fil.id, fil.blank, fil.text, fil.order);
         return (
           <>
             <LibInput
@@ -218,95 +221,7 @@ let LoadGame = withTracker(() => {
       order: 1
     }
   ];
-  let dos = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "To be, or not to be a ",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text:
-        "that is the question: Whether 'tis nobler in the mind to suffer the",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text: "of outrageous",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "Or to take arms against a sea of troubles and by opposing end",
-      order: 1
-    }
-  ];
-  let tres = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "As I have stated strongly before, and just to reiterate, if",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text: "does anything that I, in my great and unmatched",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text:
-        "consider to be off limits, I will totally destroy and obliterate the",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "of",
-      order: 1
-    },
-    {
-      id: 4,
-      blank: "Place/Person",
-      text: "(I’ve done before!).",
-      order: 1
-    }
-  ];
-  let cuatro = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "It was the",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text: "of times, it was the",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text: "of times, it was the age of",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "it was the age of",
-      order: 1
-    }
-  ];
-  let fills = [uno, dos, tres, cuatro];
-  let randomIndex = Math.floor(Math.random() * 3);
-  let fill = fills[randomIndex];
+  let fill = uno;
 
   console.log(fill, "FILL");
 
