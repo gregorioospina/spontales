@@ -17,8 +17,12 @@ const Menu = props => {
     setGamecode(evt.target.value);
   };
 
-  const newGame = () => {
+  /* const newGame = () => {
     Meteor.call("games.insert", newgamecode, [], "story");
+  }; */
+
+  const newGame = () => {
+    console.log("newgame");
   };
 
   return (

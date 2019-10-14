@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
@@ -9,8 +9,7 @@ import NavBar from "./Navbar";
 import Loading from "./Loading";
 import LibInput from "./LibInput";
 import "./Game.css";
-import { GamesRepo } from "../api/pastgames";
-import { Tracker } from "meteor/tracker";
+import { Games } from "../api/pastgames";
 
 const Game = props => {
   let p = [
@@ -50,6 +49,145 @@ const Game = props => {
 
     setFills(copy);
   };
+
+  useEffect(() => {
+    Meteor.subscribe("games", function() {
+      console.log("data ready");
+      let games = Games.find({}).fetch({});
+      console.log(games, "games");
+
+      let game = games.find(gm => {
+        if (gm.code === game_id) {
+          return gm;
+        }
+      });
+      console.log(game, "game");
+      if (game !== undefined) {
+        console.log(game.story, "story");
+        setFills(game.story);
+      } else {
+        let uno = [
+          {
+            id: 2,
+            blank: "Noun",
+            text: "Chummy chum chum",
+            order: 1
+          },
+          {
+            id: 3,
+            blank: "Place",
+            text: "Wanna go?",
+            order: 1
+          },
+          {
+            id: 4,
+            blank: "Noun",
+            text: "Chummy chum chum",
+            order: 1
+          },
+          {
+            id: 5,
+            blank: "Place",
+            text: "Wanna go?",
+            order: 1
+          }
+        ];
+        let dos = [
+          {
+            id: 0,
+            blank: "Person",
+            text: "To be, or not to be a ",
+            order: 1
+          },
+          {
+            id: 1,
+            blank: "Noun",
+            text:
+              "that is the question: Whether 'tis nobler in the mind to suffer the",
+            order: 1
+          },
+          {
+            id: 2,
+            blank: "Noun",
+            text: "of outrageous",
+            order: 1
+          },
+          {
+            id: 3,
+            blank: "Thing",
+            text:
+              "Or to take arms against a sea of troubles and by opposing end",
+            order: 1
+          }
+        ];
+        let tres = [
+          {
+            id: 0,
+            blank: "Person",
+            text: "As I have stated strongly before, and just to reiterate, if",
+            order: 1
+          },
+          {
+            id: 1,
+            blank: "Noun",
+            text: "does anything that I, in my great and unmatched",
+            order: 1
+          },
+          {
+            id: 2,
+            blank: "Noun",
+            text:
+              "consider to be off limits, I will totally destroy and obliterate the",
+            order: 1
+          },
+          {
+            id: 3,
+            blank: "Thing",
+            text: "of",
+            order: 1
+          },
+          {
+            id: 4,
+            blank: "Place/Person",
+            text: "(I’ve done before!).",
+            order: 1
+          }
+        ];
+        let cuatro = [
+          {
+            id: 0,
+            blank: "Person",
+            text: "It was the",
+            order: 1
+          },
+          {
+            id: 1,
+            blank: "Noun",
+            text: "of times, it was the",
+            order: 1
+          },
+          {
+            id: 2,
+            blank: "Noun",
+            text: "of times, it was the age of",
+            order: 1
+          },
+          {
+            id: 3,
+            blank: "Thing",
+            text: "it was the age of",
+            order: 1
+          }
+        ];
+        let fills = [uno, dos, tres, cuatro];
+        let randomIndex = Math.floor(Math.random() * 3);
+        let _fill = fills[randomIndex];
+        setFills(_fill);
+        console.log(_fill, "FILL");
+        Meteor.call("games.insert", game_id, players, _fill);
+      }
+    });
+  }, []);
 
   const printLibText = () => {
     return fill.map(fil => {
@@ -190,127 +328,16 @@ const Game = props => {
 };
 
 let LoadGame = withTracker(() => {
-  let path = window.location.pathname;
-  let codigo = path.split("/")[2];
-  let uno = [
-    {
-      id: 2,
-      blank: "Noun",
-      text: "Chummy chum chum",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Place",
-      text: "Wanna go?",
-      order: 1
-    },
-    {
-      id: 4,
-      blank: "Noun",
-      text: "Chummy chum chum",
-      order: 1
-    },
-    {
-      id: 5,
-      blank: "Place",
-      text: "Wanna go?",
-      order: 1
-    }
-  ];
-  let dos = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "To be, or not to be a ",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text:
-        "that is the question: Whether 'tis nobler in the mind to suffer the",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text: "of outrageous",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "Or to take arms against a sea of troubles and by opposing end",
-      order: 1
-    }
-  ];
-  let tres = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "As I have stated strongly before, and just to reiterate, if",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text: "does anything that I, in my great and unmatched",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text:
-        "consider to be off limits, I will totally destroy and obliterate the",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "of",
-      order: 1
-    },
-    {
-      id: 4,
-      blank: "Place/Person",
-      text: "(I’ve done before!).",
-      order: 1
-    }
-  ];
-  let cuatro = [
-    {
-      id: 0,
-      blank: "Person",
-      text: "It was the",
-      order: 1
-    },
-    {
-      id: 1,
-      blank: "Noun",
-      text: "of times, it was the",
-      order: 1
-    },
-    {
-      id: 2,
-      blank: "Noun",
-      text: "of times, it was the age of",
-      order: 1
-    },
-    {
-      id: 3,
-      blank: "Thing",
-      text: "it was the age of",
-      order: 1
-    }
-  ];
-  let fills = [uno, dos, tres, cuatro];
-  let randomIndex = Math.floor(Math.random() * 3);
-  let fill = fills[randomIndex];
-
-  console.log(fill, "FILL");
-
   //console.log(fill);
+  let codigo = window.location.pathname.split("/")[2];
+  let fill = [
+    {
+      id: 1,
+      blank: "",
+      text: "Loading....",
+      order: 1
+    }
+  ];
 
   return {
     props: {
