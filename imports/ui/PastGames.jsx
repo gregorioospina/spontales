@@ -9,7 +9,7 @@ const PastGames = props => {
         <li key={game.code}>
           <a
             href="/"
-            className="list-group-item d-flex justify-content-between align-items-center pastgame"
+            className="list-group-item d-flex justify-content-between align-items-center pastgame"//Se recomienda juntar todos los classNames en uno solo
           >
             {game.name}
             <span className="badge badge-primary badge-pill">
