@@ -4,12 +4,14 @@ import { Meteor } from "meteor/meteor";
 export const Games = new Mongo.Collection("games");
 export const GamesRepo = new Mongo.Collection("gamesrepo");
 
-if (true) {
-  Meteor.publish("games", function() {
-    return Games.find({});
-  });
-  Meteor.publish("gamesrepo", function() {
-    return GamesRepo.find({});
+//No se si esto funcione como me lo imagino, saqué esto de la documentación de meteor https://docs.meteor.com/api/pubsub.html
+//primer ejemplo, linea 20
+if (Meteor.isServer) {
+  Meteor.publish("gamesAndgamesrepo", function() {
+    return [ 
+      Games.find({}),
+      GamesRepo.find({})
+    ];
   });
 }
 
