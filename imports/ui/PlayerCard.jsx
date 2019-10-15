@@ -13,7 +13,7 @@ const PlayerCard = player => {
           <img
             src={`/shield${id}.png`}
             className="card-img-top shield-img"
-            alt="..."
+            alt="..."//Se recomienda poner un alt mas descriptivo
           />
           <div className="card-body card-body-chechonomemate">
             <p className="card-text">{playerName}</p>
