@@ -21,7 +21,7 @@ The objective of this project was to make a collaborative web-page in which one 
  In the proyect´s root folder, run:
  
  ```
- meteor install
+ meteor install --No deberia ser meteor npm install?
  meteor run
  ``` 
 

@@ -2,7 +2,7 @@ import React from "react";
 import "./Loading.css";
 
 const Loading = textisimo => {
-  console.log(textisimo);
+  console.log(textisimo); // Se recomienda quitar los console.log()
   return (
     <div className="container" id="loading-container">
       <div>
