@@ -11,7 +11,7 @@ import LibInput from "./LibInput";
 import "./Game.css";
 import { Games, Players, Submits } from "../api/pastgames";
 import { Blanks } from "../api/pastgames";
-
+//Se recomienda modular mas el codigo
 const Game = props => {
   let p = [];
   let game_id = props.props.g_id;
